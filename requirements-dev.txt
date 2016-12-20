@@ -1,4 +1,3 @@
 -r requirements.txt
 ipython[notebook]
 sqlformatter
-django-debug-toolbar

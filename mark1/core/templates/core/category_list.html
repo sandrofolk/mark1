@@ -1,0 +1,8 @@
+<h1>Categories</h1>
+<ul>
+{% for category in object_list %}
+    <li>{{ category }}</li>
+{% empty %}
+    <li>No categories yet.</li>
+{% endfor %}
+</ul>

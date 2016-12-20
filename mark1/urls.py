@@ -13,9 +13,28 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls import url, include
 from django.contrib import admin
+from mark1.core.views import listBank, listCategory
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # url(r'', admin.site.urls),
+
+    # Finance
+    url(r'^bank/$', listBank, name='bank-list'),
+    url(r'^category/$', listCategory, name='category-list'),
+    url(r'^api/', include(router.urls)),
 ]
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
