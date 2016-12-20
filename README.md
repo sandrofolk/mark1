@@ -34,6 +34,9 @@ python manage.py test
 4. Defina DEBUG=False
 5. Configure o serviço de email.
 6. Envie o código para o heroku.
+7. Aplicar as migrações.
+8. Criar o superuser.
+
 
 ```console
 heroku create mark1
@@ -42,4 +45,6 @@ heroku config:set SECRET_KEY=`python contrib/secret_gen.py`
 heroku config:set DEBUG=False
 # configurar o email
 git push heroku master --force
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
 ```
