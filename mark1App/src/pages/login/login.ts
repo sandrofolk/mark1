@@ -12,7 +12,7 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   loading: Loading;
   // registerCredentials = {username: '', password: ''};
-  registerCredentials = {username: 'admin', password: 'admin'};
+  registerCredentials = {username: 'demo', password: 'demodemo'};
 
   constructor(
     public navCtrl: NavController,

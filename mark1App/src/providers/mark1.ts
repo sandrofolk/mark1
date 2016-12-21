@@ -22,8 +22,11 @@ export class User {
 
 @Injectable()
 export class Mark1 {
-  mark1ApiUrl = 'http://127.0.0.1:8000/api';
-  mark1ApiAuthUrl = 'http://127.0.0.1:8000/rest-auth';
+  serverUrl = 'https://sandrofolk-mark1.herokuapp.com';
+  // serverUrl = 'http://127.0.0.1:8000';
+
+  mark1ApiUrl = this.serverUrl + '/api';
+  mark1ApiAuthUrl = this.serverUrl + '/rest-auth';
 
   currentUser: User;
   // user: string;

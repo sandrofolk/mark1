@@ -32,7 +32,11 @@ class SuitConfig(DjangoSuitConfig):
         # ], align_right=True, icon='fa fa-cog'),
 
         ParentItem(app='core', icon='fa fa-leaf'),
-        ParentItem(app='auth', icon='fa fa-users')
+        ParentItem(app='auth', icon='fa fa-users'),
+        ParentItem('...', children=[
+            ChildItem('App Android', url='http://google.com', target_blank=True),
+            ChildItem('App Ios', url='http://google.com', target_blank=True),
+        ], align_right=True, icon='fa fa-cog', url='#'),
     )
 
     # def ready(self):
