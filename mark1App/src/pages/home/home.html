@@ -1,0 +1,22 @@
+<ion-header>
+
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Home</ion-title>
+
+        <ion-buttons end>
+            <button ion-button (click)="logout()">
+                <ion-icon name="log-out"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <h3>Welcome inside, {{username}}!</h3>
+    Your Email is: {{email}}
+</ion-content>

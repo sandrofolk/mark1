@@ -26,6 +26,20 @@ python manage.py test
 ```
 
 
+## Como desenvolver o app em ionic2?
+
+1. Instalar Cordova.
+2. Instalar Ionic CLI.
+3. Iniciar o servidor.
+
+```console
+npm install -g cordova
+npm install -g ionic
+cd mark1App
+ionic serve -l
+```
+
+
 ## Como fazer o deploy?
 
 1. Crie uma instância no heroku.
@@ -36,7 +50,6 @@ python manage.py test
 6. Envie o código para o heroku.
 7. Aplicar as migrações.
 8. Criar o superuser.
-
 
 ```console
 heroku create mark1

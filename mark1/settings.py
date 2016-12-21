@@ -49,7 +49,9 @@ INSTALLED_APPS = [
     'test_without_migrations',
     'django_extensions',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
+    'rest_auth',
     'mptt',
     # 'organizations',
 
@@ -197,3 +199,29 @@ SUIT_CONFIG = {
 # Django Cors Headers
 
 CORS_ORIGIN_ALLOW_ALL = config('CORS_ORIGIN_ALLOW_ALL', default=True, cast=bool)
+
+# CORS_ORIGIN_WHITELIST = (
+#     'localhost:8000',
+#     '127.0.0.1:8000',
+#     'localhost:8100',
+#     '127.0.0.1:8100'
+# )
+
+# CORS_ALLOW_METHODS = (
+#     'DELETE',
+#     'GET',
+#     'OPTIONS',
+#     'PATCH',
+#     'POST',
+#     'PUT',
+# )
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication'
+    )
+}
+
+SITE_ID = 'Mark1'

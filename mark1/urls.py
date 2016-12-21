@@ -16,21 +16,28 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.views.generic.base import RedirectView
+
+from mark1.core import views
 from mark1.core.views import listBank, listCategory
 from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()
+router.register(r'person', views.PersonViewSet, base_name='Person')
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'', admin.site.urls),
+    url(r'^$', RedirectView.as_view(url='/admin')),
 
     # Finance
     url(r'^bank/$', listBank, name='bank-list'),
     url(r'^category/$', listCategory, name='category-list'),
     url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^rest-auth/', include('rest_auth.urls')),
 ]
 
 if settings.DEBUG:
