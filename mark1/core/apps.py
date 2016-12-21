@@ -33,9 +33,8 @@ class SuitConfig(DjangoSuitConfig):
 
         ParentItem(app='core', icon='fa fa-leaf'),
         ParentItem(app='auth', icon='fa fa-users'),
-        ParentItem('...', children=[
-            ChildItem('App Android', url='http://google.com', target_blank=True),
-            ChildItem('App Ios', url='http://google.com', target_blank=True),
+        ParentItem('App', children=[
+            ChildItem('App Android', url='https://github.com/sandrofolk/mark1/raw/master/mark1App/platforms/android/build/outputs/apk/android-debug.apk', target_blank=True),
         ], align_right=True, icon='fa fa-cog', url='#'),
     )
 
