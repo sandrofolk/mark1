@@ -56,17 +56,15 @@ export class Mark1 {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
 
-        // observer.next(false);
-
         this.http.post(`${this.mark1ApiAuthUrl}/login/`, JSON.stringify(credentials), { headers: this.contentHeader })
         .map(res => res.json())
         .subscribe(
           data => {
-            console.log(data.key)
+            // console.log(data.key)
             // console.log(this.currentUser)
             this.currentUser = new User(credentials.username, '@', data.key);
 
-            this.contentHeader.append('Authorization', 'Token '+data.key);
+            this.contentHeader.set('Authorization', 'Token '+data.key);
 
             // console.log(this.currentUser)
             observer.next(true);
@@ -114,6 +112,7 @@ export class Mark1 {
   public logout() {
     return Observable.create(observer => {
       this.currentUser = null;
+      this.contentHeader.delete('Authorization');
       observer.next(true);
       observer.complete();
     });
