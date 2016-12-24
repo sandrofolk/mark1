@@ -3,9 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { Person } from '../../models/person';
 import { PersonsDetailsPage } from '../persons-details/persons-details';
+import { PersonsEditPage } from '../persons-edit/persons-edit';
 
 import { Mark1 } from '../../providers/mark1';
-import { LoginPage } from '../login/login';
 
 
 @Component({
@@ -13,27 +13,22 @@ import { LoginPage } from '../login/login';
   templateUrl: 'persons.html'
 })
 export class PersonsPage {
-  persons: Person[]
+  persons: Person[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mark1: Mark1) {
-    mark1.load().subscribe(persons => {
-      // console.log(persons)
-      this.persons = persons;
-    })
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, private mark1: Mark1) {}
 
   goToDetails(id: number) {
     this.navCtrl.push(PersonsDetailsPage, {id});
   }
 
-  public logout() {
-    this.mark1.logout().subscribe(succ => {
-        this.navCtrl.setRoot(LoginPage)
-    });
+  add() {
+    this.navCtrl.push(PersonsEditPage);
   }
 
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad PersonsPage');
-  // }
+  ionViewDidEnter() {
+    this.mark1.load().subscribe(persons => {
+      this.persons = persons;
+    })
+  }
 
 }

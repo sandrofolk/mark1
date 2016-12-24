@@ -1,0 +1,32 @@
+{
+  "menu" : {
+    "title" : "Menu",
+    "home" : "Início",
+    "persons" : "Pessoas",
+    "logout" : "Sair"
+  },
+  "app" : {
+    "msgPleaseWait" : "Por favor aguarde...",
+    "msgShowErrorTitle" : "Falha",
+    "msgShowErrorButtonOK" : "OK"
+  },
+  "login" : {
+    "title" : "Login",
+    "username" : "Usuário",
+    "password" : "Senha",
+    "btLogin" : "Entrar",
+    "msgGetCredentials" : "Por favor insira suas credenciais",
+    "msgAccessDenied" : "Acesso Negado"
+  },
+  "home" : {
+    "title" : "Início",
+    "welcome": "Bem vindo novamente, {{username}}!"
+  },
+  "persons" : {
+    "titleList" : "Pessoas",
+    "titleCad" : "Pessoa",
+    "fieldName" : "Nome",
+    "fieldClient" : "Cliente?",
+    "fieldProvider" : "Fornecedor?"
+  }
+}

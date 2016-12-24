@@ -11,12 +11,12 @@ import { LoginPage } from '../login/login';
 })
 export class HomePage {
   username = '';
-  email = '';
+  param = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mark1: Mark1) {
     let info = this.mark1.getUserInfo();
     this.username = info.name;
-    this.email = info.email;
+    this.param = {username: this.username};
   }
 
   public logout() {
@@ -24,9 +24,5 @@ export class HomePage {
         this.navCtrl.setRoot(LoginPage)
     });
   }
-
-  // ionViewDidLoad() {
-  //   console.log('ionViewDidLoad HomePage');
-  // }
 
 }

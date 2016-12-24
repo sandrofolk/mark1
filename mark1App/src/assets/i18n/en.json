@@ -1,0 +1,32 @@
+{
+  "menu" : {
+    "title" : "Menu",
+    "home" : "Home",
+    "persons" : "Persons",
+    "logout" : "Logout"
+  },
+  "app" : {
+    "msgPleaseWait" : "Please wait...",
+    "msgShowErrorTitle" : "Fail",
+    "msgShowErrorButtonOK" : "OK"
+  },
+  "login" : {
+    "title" : "Login",
+    "username" : "Username",
+    "password" : "Password",
+    "btLogin" : "Login",
+    "msgGetCredentials" : "Please insert credentials",
+    "msgAccessDenied" : "Access Denied"
+  },
+  "home" : {
+    "title" : "Home",
+    "welcome": "Welcome inside, {{username}}!"
+  },
+  "persons" : {
+    "titleList" : "Persons",
+    "titleCad" : "Person",
+    "fieldName" : "Name",
+    "fieldClient" : "Client?",
+    "fieldProvider" : "Provider?"
+  }
+}

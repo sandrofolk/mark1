@@ -4,7 +4,7 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Home</ion-title>
+        <ion-title>{{ 'home.title' | translate }}</ion-title>
 
         <ion-buttons end>
             <button ion-button (click)="logout()">
@@ -17,6 +17,5 @@
 
 
 <ion-content padding>
-    <h3>Welcome inside, {{username}}!</h3>
-    Your Email is: {{email}}
+    <h3>{{ 'home.welcome' | translate:param }}</h3>
 </ion-content>

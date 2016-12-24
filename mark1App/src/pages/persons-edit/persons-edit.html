@@ -1,0 +1,37 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'persons.titleCad' | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button color="secondary" (click)="post()" [disabled]="!personForm.form.valid">
+                <ion-icon name="done-all"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="post()" #personForm="ngForm">
+        <ion-list>
+
+            <ion-item>
+                <ion-label stacked>{{ 'persons.fieldName' | translate }}</ion-label>
+                <ion-input type="text" name="name" [(ngModel)]="person.name" required>
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'persons.fieldClient' | translate }}</ion-label>
+                <ion-checkbox [(ngModel)]="person.client" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'persons.fieldProvider' | translate }}</ion-label>
+                <ion-checkbox [(ngModel)]="person.provider" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            </ion-item>
+
+        </ion-list>
+    </form>
+</ion-content>

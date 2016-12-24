@@ -1,16 +1,18 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-// import { Http } from '@angular/http';
-// import { Storage } from '@ionic/storage';
-// import { AuthHttp, AuthConfig, AUTH_PROVIDERS } from 'angular2-jwt';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { TranslateModule } from 'ng2-translate/ng2-translate';
+
 import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { PersonsPage } from '../pages/persons/persons';
 import { PersonsDetailsPage } from '../pages/persons-details/persons-details';
+import { PersonsEditPage } from '../pages/persons-edit/persons-edit';
 
 import { Mark1 } from '../providers/mark1';
+import {TranslateStaticLoader, TranslateLoader} from "ng2-translate";
+import {Http} from "@angular/http";
 
 
 // let storage = new Storage();
@@ -30,10 +32,16 @@ import { Mark1 } from '../providers/mark1';
     LoginPage,
     HomePage,
     PersonsPage,
-    PersonsDetailsPage
+    PersonsDetailsPage,
+    PersonsEditPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
+            deps: [Http]
+        })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +49,8 @@ import { Mark1 } from '../providers/mark1';
     LoginPage,
     HomePage,
     PersonsPage,
-    PersonsDetailsPage
+    PersonsDetailsPage,
+    PersonsEditPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

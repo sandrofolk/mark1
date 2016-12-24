@@ -1,18 +1,17 @@
-import {Component} from '@angular/core';
-import {NavController, NavParams, Loading, AlertController, LoadingController, Checkbox} from 'ionic-angular';
+import { Component } from '@angular/core';
+import {NavController, NavParams, Loading, AlertController, LoadingController} from 'ionic-angular';
 
 import { Person } from '../../models/person';
-
-import { Mark1 } from '../../providers/mark1';
-import {PersonsEditPage} from "../persons-edit/persons-edit";
+import {Mark1} from "../../providers/mark1";
 import {TranslateService} from "ng2-translate";
 
+
 @Component({
-  selector: 'page-persons-details',
-  templateUrl: 'persons-details.html'
+  selector: 'page-persons-edit',
+  templateUrl: 'persons-edit.html'
 })
-export class PersonsDetailsPage {
-  person: Person;
+export class PersonsEditPage {
+  person: Person = <Person>({});
   id: number;
   loading: Loading;
   str = {};
@@ -26,6 +25,11 @@ export class PersonsDetailsPage {
     private mark1: Mark1
   ) {
     this.id = navParams.get('id');
+    if (this.id) {
+      mark1.loadDetails(this.id).subscribe(person => {
+        this.person = person;
+      })
+    }
 
     this.translate.get(
       [
@@ -40,25 +44,7 @@ export class PersonsDetailsPage {
           'msgShowErrorButtonOK': res['app.msgShowErrorButtonOK']
         };
       });
-  }
 
-  edit(id: number) {
-    this.navCtrl.push(PersonsEditPage, {"parentPage": this, id});
-  }
-
-  delete() {
-    this.showLoading();
-    this.mark1.deletePerson(this.person).subscribe(allowed => {
-      if (allowed) {
-        setTimeout(() => {
-          this.navCtrl.pop();
-          this.loading.dismiss();
-        });
-      }
-    },
-    error => {
-      this.showError(error);
-    });
   }
 
   showLoading() {
@@ -81,18 +67,23 @@ export class PersonsDetailsPage {
     alert.present(prompt);
   }
 
-  // ionViewDidEnter() {
-  //   this.carregaPerson();
+  post() {
+    this.showLoading();
+    this.mark1.postPerson(this.person).subscribe(allowed => {
+      if (allowed) {
+        setTimeout(() => {
+          this.navCtrl.pop();
+          this.loading.dismiss();
+        });
+      }
+    },
+    error => {
+      this.showError(error);
+    });
+  }
+
+  // ionViewDidLoad() {
+  //   console.log('ionViewDidLoad PersonsEditPage');
   // }
-
-  ionViewWillEnter() {
-    this.carregaPerson();
-  }
-
-  carregaPerson() {
-    this.mark1.loadDetails(this.id).subscribe(person => {
-      this.person = person;
-    })
-  }
 
 }

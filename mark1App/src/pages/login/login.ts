@@ -3,6 +3,8 @@ import { NavController, NavParams, AlertController, LoadingController, Loading, 
 
 import { Mark1 } from '../../providers/mark1';
 import { HomePage } from '../home/home';
+import {TranslateService} from "ng2-translate";
+// import {PersonsPage} from "../persons/persons";
 
 
 @Component({
@@ -12,7 +14,8 @@ import { HomePage } from '../home/home';
 export class LoginPage {
   loading: Loading;
   // registerCredentials = {username: '', password: ''};
-  registerCredentials = {username: 'demo', password: 'demodemo'};
+  registerCredentials = {username: 'demo', password: 'demodemo'}; //TODO: Apenas para testes
+  str = {};
 
   constructor(
     public navCtrl: NavController,
@@ -20,30 +23,54 @@ export class LoginPage {
     private mark1: Mark1,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    public menu: MenuController
-  ) {}
+    public menu: MenuController,
+    public translate: TranslateService
+  ) {
+    // this.login(); // TODO: Apenas para testes
+  }
 
   public login() {
-    this.showLoading()
-    this.mark1.login(this.registerCredentials).subscribe(allowed => {
-      if (allowed) {
-        setTimeout(() => {
-        this.loading.dismiss();
-        this.navCtrl.setRoot(HomePage);
-        this.menu.enable(true, 'menu')
-        });
-      } else {
-        this.showError("Access Denied");
-      }
-    },
-    error => {
-      this.showError(error);
+    this.translate.get(
+      [
+        'login.msgGetCredentials',
+        'login.msgAccessDenied',
+        'app.msgPleaseWait',
+        'app.msgShowErrorTitle',
+        'app.msgShowErrorButtonOK'
+      ])
+      .subscribe((res: string[]) => {
+      this.str = {
+        'msgGetCredentials': res['login.msgGetCredentials'],
+        'msgAccessDenied': res['login.msgAccessDenied'],
+        'msgPleaseWait': res['app.msgPleaseWait'],
+        'msgShowErrorTitle': res['app.msgShowErrorTitle'],
+        'msgShowErrorButtonOK': res['app.msgShowErrorButtonOK']
+      };
+
+      this.showLoading();
+
+      this.mark1.login(this.registerCredentials, this.str).subscribe(allowed => {
+        if (allowed) {
+          setTimeout(() => {
+          this.loading.dismiss();
+          this.navCtrl.setRoot(HomePage);
+          // this.navCtrl.setRoot(PersonsPage); // TODO: Apenas para testes
+          this.menu.enable(true, 'menu');
+          });
+        } else {
+          this.showError(this.str['msgAccessDenied']);
+        }
+      },
+      error => {
+        this.showError(error);
+      });
     });
+
   }
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Please wait...'
+      content: this.str['msgPleaseWait']
     });
     this.loading.present();
   }
@@ -54,9 +81,9 @@ export class LoginPage {
     });
 
     let alert = this.alertCtrl.create({
-      title: 'Fail',
+      title: this.str['msgShowErrorTitle'],
       subTitle: text,
-      buttons: ['OK']
+      buttons: [this.str['msgShowErrorButtonOK']]
     });
     alert.present(prompt);
   }
