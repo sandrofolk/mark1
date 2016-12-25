@@ -61,3 +61,16 @@ class Category(MPTTModel):
 
     def __str__(self):
         return self.description
+
+
+class CostCenter(models.Model):
+    description = models.CharField('descrição', max_length=255)
+    revenue = models.BooleanField('receita?', default=False)
+    cost = models.BooleanField('custo?', default=False)
+
+    class Meta:
+        verbose_name = 'centro de custo / receita'
+        verbose_name_plural = 'centros de custo / receita'
+
+    def __str__(self):
+        return self.description

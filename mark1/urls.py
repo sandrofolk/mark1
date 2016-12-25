@@ -25,6 +25,10 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'person', views.PersonViewSet, base_name='Person')
+router.register(r'bank', views.BankViewSet, base_name='Bank')
+router.register(r'account', views.AccountViewSet, base_name='Account')
+router.register(r'category', views.CategoryViewSet, base_name='Category')
+router.register(r'cost_center', views.CostCenterViewSet, base_name='CostCenter')
 
 
 urlpatterns = [

@@ -29,9 +29,14 @@ class PersonModelAdmin(admin.ModelAdmin):
     list_display = ['name', 'client', 'provider']
 
 
+class CostCenterModelAdmin(admin.ModelAdmin):
+    list_display = ['description', 'revenue', 'cost']
+
+
 admin.site.register(Person, PersonModelAdmin)
 admin.site.register(Bank, BankModelAdmin)
 admin.site.register(Account, AccountModelAdmin)
 admin.site.register(Category, CategoryModelAdmin)
+admin.site.register(CostCenter, CostCenterModelAdmin)
 
 # admin.site.register(Test)
