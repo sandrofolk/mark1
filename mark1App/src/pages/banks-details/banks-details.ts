@@ -1,18 +1,19 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {NavController, NavParams, Loading, AlertController, LoadingController} from 'ionic-angular';
 
-import { Person } from '../../models/person';
-
+import { Bank } from '../../models/bank';
 import { Mark1 } from '../../providers/mark1';
-import {PersonsEditPage} from "../persons-edit/persons-edit";
 import {TranslateService} from "ng2-translate";
+import {BanksEditPage} from "../banks-edit/banks-edit";
+
 
 @Component({
-  selector: 'page-persons-details',
-  templateUrl: 'persons-details.html'
+  selector: 'page-banks-details',
+  templateUrl: 'banks-details.html'
 })
-export class PersonsDetailsPage {
-  person: Person;
+export class BanksDetailsPage {
+
+  bank: Bank;
   id: number;
   loading: Loading;
   str = {};
@@ -43,12 +44,12 @@ export class PersonsDetailsPage {
   }
 
   edit(id: number) {
-    this.navCtrl.push(PersonsEditPage, {"parentPage": this, id});
+    this.navCtrl.push(BanksEditPage, {"parentPage": this, id});
   }
 
   delete() {
     this.showLoading();
-    this.mark1.deletePerson(this.person).subscribe(allowed => {
+    this.mark1.deleteBank(this.bank).subscribe(allowed => {
       if (allowed) {
         setTimeout(() => {
           this.navCtrl.pop();
@@ -81,13 +82,17 @@ export class PersonsDetailsPage {
     alert.present(prompt);
   }
 
+  // ionViewDidEnter() {
+  //   this.carregaPerson();
+  // }
+
   ionViewWillEnter() {
-    this.carregaPerson();
+    this.carregaBank();
   }
 
-  carregaPerson() {
-    this.mark1.loadDetails(this.id).subscribe(person => {
-      this.person = person;
+  carregaBank() {
+    this.mark1.loadDetailsBank(this.id).subscribe(bank => {
+      this.bank = bank;
     })
   }
 

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
 import { Person } from '../models/person';
+import { Bank } from '../models/bank';
+import { Category } from '../models/category';
 
 
 export class User {
@@ -56,6 +58,19 @@ export class Mark1 {
     }
   }
 
+  public getUserInfo() : User {
+    return this.currentUser;
+  }
+
+  public logout() {
+    return Observable.create(observer => {
+      this.currentUser = null;
+      this.contentHeader.delete('Authorization');
+      observer.next(true);
+      observer.complete();
+    });
+  }
+
   public postPerson(person) {
     return Observable.create(observer => {
         if (person.id)
@@ -68,7 +83,7 @@ export class Mark1 {
                 observer.complete();
               },
               err => {
-                observer.next(false);
+                observer.error(err._body);
                 observer.complete();
               }
             );
@@ -81,8 +96,75 @@ export class Mark1 {
                 observer.complete();
               },
               err => {
-                observer.error(err._body)
-                // observer.next(false);
+                observer.error(err._body);
+                observer.complete();
+              }
+            );
+        }
+      }
+    )
+  }
+
+  public postBank(bank) {
+    return Observable.create(observer => {
+        if (bank.id)
+        {
+          this.http.put(`${this.mark1ApiUrl}/bank/${bank.id}/`, JSON.stringify(bank), {headers: this.contentHeader})
+            .map(res => res.json())
+            .subscribe(
+              data => {
+                observer.next(true);
+                observer.complete();
+              },
+              err => {
+                observer.error(err._body);
+                observer.complete();
+              }
+            );
+        } else {
+          this.http.post(`${this.mark1ApiUrl}/bank/`, JSON.stringify(bank), {headers: this.contentHeader})
+            .map(res => res.json())
+            .subscribe(
+              data => {
+                observer.next(true);
+                observer.complete();
+              },
+              err => {
+                observer.error(err._body);
+                observer.complete();
+              }
+            );
+        }
+      }
+    )
+  }
+
+  public postCategory(category) {
+    return Observable.create(observer => {
+        if (category.id)
+        {
+          this.http.put(`${this.mark1ApiUrl}/category/${category.id}/`, JSON.stringify(category), {headers: this.contentHeader})
+            .map(res => res.json())
+            .subscribe(
+              data => {
+                observer.next(true);
+                observer.complete();
+              },
+              err => {
+                observer.error(err._body);
+                observer.complete();
+              }
+            );
+        } else {
+          this.http.post(`${this.mark1ApiUrl}/category/`, JSON.stringify(category), {headers: this.contentHeader})
+            .map(res => res.json())
+            .subscribe(
+              data => {
+                observer.next(true);
+                observer.complete();
+              },
+              err => {
+                observer.error(err._body);
                 observer.complete();
               }
             );
@@ -110,17 +192,42 @@ export class Mark1 {
     )
   }
 
-  public getUserInfo() : User {
-    return this.currentUser;
+  public deleteBank(bank) {
+    return Observable.create(observer => {
+
+        this.http.delete(`${this.mark1ApiUrl}/bank/${bank.id}/`, {headers: this.contentHeader})
+          .map(res => res.json())
+          .subscribe(
+            data => {
+              observer.next(true);
+              observer.complete();
+            },
+            err => {
+              observer.next(false);
+              observer.complete();
+            }
+          );
+      }
+    )
   }
 
-  public logout() {
+  public deleteCategory(category) {
     return Observable.create(observer => {
-      this.currentUser = null;
-      this.contentHeader.delete('Authorization');
-      observer.next(true);
-      observer.complete();
-    });
+
+        this.http.delete(`${this.mark1ApiUrl}/category/${category.id}/`, {headers: this.contentHeader})
+          .map(res => res.json())
+          .subscribe(
+            data => {
+              observer.next(true);
+              observer.complete();
+            },
+            err => {
+              observer.next(false);
+              observer.complete();
+            }
+          );
+      }
+    )
   }
 
   // Load all mark1 persons
@@ -133,6 +240,33 @@ export class Mark1 {
   loadDetails(id: number): Observable<Person> {
     return this.http.get(`${this.mark1ApiUrl}/person/${id}/`, { headers: this.contentHeader })
       .map(res => <Person>(res.json()))
+  }
+
+  // Load all mark1 banks
+  loadBanks(): Observable<Bank[]> {
+    return this.http.get(`${this.mark1ApiUrl}/bank/`, { headers: this.contentHeader })
+      .map(res => <Bank[]>res.json());
+  }
+
+  // Get mark1 bank by providing id
+  loadDetailsBank(id: number): Observable<Bank> {
+    return this.http.get(`${this.mark1ApiUrl}/bank/${id}/`, { headers: this.contentHeader })
+      .map(res => <Bank>(res.json()))
+  }
+
+
+
+
+  // Load all mark1 categories
+  loadCategories(): Observable<Category[]> {
+    return this.http.get(`${this.mark1ApiUrl}/category/`, { headers: this.contentHeader })
+      .map(res => <Category[]>res.json());
+  }
+
+  // Get mark1 category by providing id
+  loadDetailsCategory(id: number): Observable<Category> {
+    return this.http.get(`${this.mark1ApiUrl}/category/${id}/`, { headers: this.contentHeader })
+      .map(res => <Category>(res.json()))
   }
 
 }

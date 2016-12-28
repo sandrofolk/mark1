@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ bank?.description }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <h2>{{ bank?.description }}</h2>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{ 'banks.fieldCode' | translate }}</ion-label>
+        <ion-note item-right="">
+            {{ bank?.code }}
+        </ion-note>
+    </ion-item>
+  </ion-list>
+
+    <ion-fab right bottom>
+
+        <button ion-fab mini color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+
+        <ion-fab-list side="left">
+            <button ion-fab mini (click)="edit( bank?.id )"><ion-icon name="create"></ion-icon></button>
+            <button ion-fab mini color="danger" (click)="delete( bank?.id )"><ion-icon name="trash"></ion-icon></button>
+        </ion-fab-list>
+
+    </ion-fab>
+</ion-content>

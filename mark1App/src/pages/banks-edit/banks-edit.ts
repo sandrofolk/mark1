@@ -1,18 +1,18 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {NavController, NavParams, Loading, AlertController, LoadingController} from 'ionic-angular';
 
-import { Person } from '../../models/person';
-
-import { Mark1 } from '../../providers/mark1';
-import {PersonsEditPage} from "../persons-edit/persons-edit";
+import {Mark1} from "../../providers/mark1";
 import {TranslateService} from "ng2-translate";
+import {Bank} from "../../models/bank";
+
 
 @Component({
-  selector: 'page-persons-details',
-  templateUrl: 'persons-details.html'
+  selector: 'page-banks-edit',
+  templateUrl: 'banks-edit.html'
 })
-export class PersonsDetailsPage {
-  person: Person;
+export class BanksEditPage {
+
+  bank: Bank = <Bank>({});
   id: number;
   loading: Loading;
   str = {};
@@ -26,6 +26,11 @@ export class PersonsDetailsPage {
     private mark1: Mark1
   ) {
     this.id = navParams.get('id');
+    if (this.id) {
+      mark1.loadDetailsBank(this.id).subscribe(bank => {
+        this.bank = bank;
+      })
+    }
 
     this.translate.get(
       [
@@ -40,25 +45,6 @@ export class PersonsDetailsPage {
           'msgShowErrorButtonOK': res['app.msgShowErrorButtonOK']
         };
       });
-  }
-
-  edit(id: number) {
-    this.navCtrl.push(PersonsEditPage, {"parentPage": this, id});
-  }
-
-  delete() {
-    this.showLoading();
-    this.mark1.deletePerson(this.person).subscribe(allowed => {
-      if (allowed) {
-        setTimeout(() => {
-          this.navCtrl.pop();
-          this.loading.dismiss();
-        });
-      }
-    },
-    error => {
-      this.showError(error);
-    });
   }
 
   showLoading() {
@@ -81,14 +67,19 @@ export class PersonsDetailsPage {
     alert.present(prompt);
   }
 
-  ionViewWillEnter() {
-    this.carregaPerson();
-  }
-
-  carregaPerson() {
-    this.mark1.loadDetails(this.id).subscribe(person => {
-      this.person = person;
-    })
+  post() {
+    this.showLoading();
+    this.mark1.postBank(this.bank).subscribe(allowed => {
+      if (allowed) {
+        setTimeout(() => {
+          this.navCtrl.pop();
+          this.loading.dismiss();
+        });
+      }
+    },
+    error => {
+      this.showError(error);
+    });
   }
 
 }

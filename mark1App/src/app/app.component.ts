@@ -6,6 +6,8 @@ import {TranslateService} from 'ng2-translate';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
 import { PersonsPage } from '../pages/persons/persons';
+import { BanksPage } from '../pages/banks/banks';
+import { CategoriesPage } from '../pages/categories/categories';
 
 import { Mark1 } from '../providers/mark1';
 
@@ -27,11 +29,12 @@ export class MyApp {
 
     this.translateConfig();
 
-    this.translate.get(['menu.home', 'menu.persons']).subscribe((res: string[]) => {
-      // used for an example of ngFor and navigation
+    this.translate.get(['menu.home', 'menu.persons', 'menu.banks', 'menu.categories']).subscribe((res: string[]) => {
       this.pages = [
         { title: res['menu.home'], component: HomePage },
-        { title: res['menu.persons'], component: PersonsPage }
+        { title: res['menu.persons'], component: PersonsPage },
+        { title: res['menu.banks'], component: BanksPage },
+        { title: res['menu.categories'], component: CategoriesPage }
       ];
     });
 

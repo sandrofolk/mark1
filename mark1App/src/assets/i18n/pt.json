@@ -3,6 +3,8 @@
     "title" : "Menu",
     "home" : "Início",
     "persons" : "Pessoas",
+    "banks" : "Bancos",
+    "categories": "Categorias",
     "logout" : "Sair"
   },
   "app" : {
@@ -28,5 +30,17 @@
     "fieldName" : "Nome",
     "fieldClient" : "Cliente?",
     "fieldProvider" : "Fornecedor?"
+  },
+  "banks" : {
+    "titleList" : "Bancos",
+    "titleCad" : "Banco",
+    "fieldCode" : "Código",
+    "fieldDescription" : "Descrição"
+  },
+  "categories" : {
+    "titleList" : "Categorias",
+    "titleCad" : "Categoria",
+    "fieldDescription" : "Descrição",
+    "fieldParent": "Pai"
   }
 }

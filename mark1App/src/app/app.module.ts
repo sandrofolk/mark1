@@ -1,30 +1,27 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { TranslateModule } from 'ng2-translate/ng2-translate';
+import {TranslateStaticLoader, TranslateLoader} from "ng2-translate";
+import {Http} from "@angular/http";
 
 import { MyApp } from './app.component';
 
+import { Mark1 } from '../providers/mark1';
 import { LoginPage } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+
 import { PersonsPage } from '../pages/persons/persons';
 import { PersonsDetailsPage } from '../pages/persons-details/persons-details';
 import { PersonsEditPage } from '../pages/persons-edit/persons-edit';
 
-import { Mark1 } from '../providers/mark1';
-import {TranslateStaticLoader, TranslateLoader} from "ng2-translate";
-import {Http} from "@angular/http";
+import {BanksPage} from "../pages/banks/banks";
+import {BanksDetailsPage} from "../pages/banks-details/banks-details";
+import {BanksEditPage} from "../pages/banks-edit/banks-edit";
 
+import {CategoriesPage} from "../pages/categories/categories";
+import {CategoriesDetailsPage} from "../pages/categories-details/categories-details";
+import {CategoriesEditPage} from "../pages/categories-edit/categories-edit";
 
-// let storage = new Storage();
-//
-// export function getAuthHttp(http) {
-//   return new AuthHttp(new AuthConfig({
-//     headerPrefix: 'mk1',
-//     noJwtError: true,
-//     globalHeaders: [{'Accept': 'application/json'}],
-//     tokenGetter: (() => storage.get('id_token')),
-//   }), http);
-// }
 
 @NgModule({
   declarations: [
@@ -33,7 +30,13 @@ import {Http} from "@angular/http";
     HomePage,
     PersonsPage,
     PersonsDetailsPage,
-    PersonsEditPage
+    PersonsEditPage,
+    BanksPage,
+    BanksDetailsPage,
+    BanksEditPage,
+    CategoriesPage,
+    CategoriesDetailsPage,
+    CategoriesEditPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -50,17 +53,17 @@ import {Http} from "@angular/http";
     HomePage,
     PersonsPage,
     PersonsDetailsPage,
-    PersonsEditPage
+    PersonsEditPage,
+    BanksPage,
+    BanksDetailsPage,
+    BanksEditPage,
+    CategoriesPage,
+    CategoriesDetailsPage,
+    CategoriesEditPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Mark1
-    // , Storage, AUTH_PROVIDERS,
-    // {
-    //   provide: AuthHttp,
-    //   useFactory: getAuthHttp,
-    //   deps: [Http]
-    // }
   ]
 })
 export class AppModule {}

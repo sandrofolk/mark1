@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'banks.titleCad' | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button color="secondary" (click)="post()" [disabled]="!bankForm.form.valid">
+                <ion-icon name="done-all"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="post()" #bankForm="ngForm">
+        <ion-list>
+
+            <ion-item>
+                <ion-label stacked>{{ 'banks.fieldCode' | translate }}</ion-label>
+                <ion-input type="text" name="code" [(ngModel)]="bank.code" required>
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'banks.fieldDescription' | translate }}</ion-label>
+                <ion-input type="text" name="description" [(ngModel)]="bank.description" required>
+                </ion-input>
+            </ion-item>
+
+        </ion-list>
+    </form>
+</ion-content>

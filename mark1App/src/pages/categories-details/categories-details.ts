@@ -1,18 +1,19 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import {NavController, NavParams, Loading, AlertController, LoadingController} from 'ionic-angular';
 
-import { Person } from '../../models/person';
-
+import { Category } from '../../models/category';
 import { Mark1 } from '../../providers/mark1';
-import {PersonsEditPage} from "../persons-edit/persons-edit";
 import {TranslateService} from "ng2-translate";
+import {CategoriesEditPage} from "../categories-edit/categories-edit";
+
 
 @Component({
-  selector: 'page-persons-details',
-  templateUrl: 'persons-details.html'
+  selector: 'page-categories-details',
+  templateUrl: 'categories-details.html'
 })
-export class PersonsDetailsPage {
-  person: Person;
+export class CategoriesDetailsPage {
+
+  category: Category;
   id: number;
   loading: Loading;
   str = {};
@@ -43,12 +44,12 @@ export class PersonsDetailsPage {
   }
 
   edit(id: number) {
-    this.navCtrl.push(PersonsEditPage, {"parentPage": this, id});
+    this.navCtrl.push(CategoriesEditPage, {"parentPage": this, id});
   }
 
   delete() {
     this.showLoading();
-    this.mark1.deletePerson(this.person).subscribe(allowed => {
+    this.mark1.deleteCategory(this.category).subscribe(allowed => {
       if (allowed) {
         setTimeout(() => {
           this.navCtrl.pop();
@@ -82,12 +83,12 @@ export class PersonsDetailsPage {
   }
 
   ionViewWillEnter() {
-    this.carregaPerson();
+    this.carregaCategory();
   }
 
-  carregaPerson() {
-    this.mark1.loadDetails(this.id).subscribe(person => {
-      this.person = person;
+  carregaCategory() {
+    this.mark1.loadDetailsCategory(this.id).subscribe(category => {
+      this.category = category;
     })
   }
 

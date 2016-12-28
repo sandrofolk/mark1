@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'categories.titleCad' | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button color="secondary" (click)="post()" [disabled]="!categoryForm.form.valid">
+                <ion-icon name="done-all"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="post()" #categoryForm="ngForm">
+        <ion-list>
+
+            <ion-item>
+                <ion-label stacked>{{ 'categories.fieldDescription' | translate }}</ion-label>
+                <ion-input type="text" name="description" [(ngModel)]="category.description" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'categories.fieldParent' | translate }}</ion-label>
+                <ion-select name="parent" [(ngModel)]="category.parent" >
+                    <ion-option *ngFor="let cat of categoriesParent" value="{{ cat.id }}">{{ cat.description }}</ion-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-list>
+    </form>
+</ion-content>
