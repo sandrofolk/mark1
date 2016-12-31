@@ -22,9 +22,11 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    parent_description = serializers.ReadOnlyField()
+
     class Meta:
         model = Category
-        fields = ['id', 'description', 'parent']
+        fields = ['id', 'description', 'parent', 'parent_description']
 
 
 class CostCenterSerializer(serializers.ModelSerializer):

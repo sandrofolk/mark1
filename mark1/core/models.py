@@ -50,7 +50,11 @@ class Account(models.Model):
 
 class Category(MPTTModel):
     description = models.CharField('descrição', max_length=255)
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children')
+    parent = TreeForeignKey('self', null=True, blank=True, related_name='categories')
+
+    @property
+    def parent_description(self):
+        return self.parent.description
 
     class Meta:
         verbose_name = 'categoria'
