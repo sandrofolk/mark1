@@ -18,7 +18,7 @@ class BankSerializer(serializers.ModelSerializer):
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = '__all__'
+        fields = ['id', 'bank', 'agency', 'account', 'digit', 'description', 'bank_description']
 
 
 class CategorySerializer(serializers.ModelSerializer):

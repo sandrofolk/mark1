@@ -5,6 +5,7 @@
     "persons" : "Pessoas",
     "banks" : "Bancos",
     "categories": "Categorias",
+    "accounts": "Contas",
     "logout" : "Sair"
   },
   "app" : {
@@ -42,5 +43,14 @@
     "titleCad" : "Categoria",
     "fieldDescription" : "Descrição",
     "fieldParent": "Pai"
+  },
+  "accounts" : {
+    "titleList" : "Contas",
+    "titleCad" : "Conta",
+    "fieldAgency" : "Agência",
+    "fieldAccount" : "Conta",
+    "fieldDigit" : "Digito",
+    "fieldDescription" : "Descrição",
+    "fieldBank": "Banco"
   }
 }

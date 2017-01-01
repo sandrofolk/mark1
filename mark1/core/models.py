@@ -40,6 +40,10 @@ class Account(models.Model):
     digit = models.CharField('dígito', max_length=20, null=True, blank=True)
     description = models.CharField('descrição', max_length=255)
 
+    @property
+    def bank_description(self):
+        return self.bank.description
+
     class Meta:
         verbose_name = 'conta'
         verbose_name_plural = 'contas'
