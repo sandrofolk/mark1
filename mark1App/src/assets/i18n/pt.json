@@ -6,6 +6,7 @@
     "banks" : "Bancos",
     "categories": "Categorias",
     "accounts": "Contas",
+    "cost_centers": "Centros de custo",
     "logout" : "Sair"
   },
   "app" : {
@@ -52,5 +53,12 @@
     "fieldDigit" : "Digito",
     "fieldDescription" : "Descrição",
     "fieldBank": "Banco"
+  },
+  "cost_centers" : {
+    "titleList" : "Centros de Custo",
+    "titleCad" : "Centro de Custo",
+    "fieldDescription" : "Descrição",
+    "fieldRevenue" : "Receita?",
+    "fieldCost" : "Custo?"
   }
 }

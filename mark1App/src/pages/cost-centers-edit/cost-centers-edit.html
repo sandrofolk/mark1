@@ -1,0 +1,37 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'cost_centers.titleCad' | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button color="secondary" (click)="post()" [disabled]="!costCenterForm.form.valid">
+                <ion-icon name="done-all"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="post()" #costCenterForm="ngForm">
+        <ion-list>
+
+            <ion-item>
+                <ion-label stacked>{{ 'cost_centers.fieldDescription' | translate }}</ion-label>
+                <ion-input type="text" name="description" [(ngModel)]="cost_center.description" required>
+                </ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'cost_centers.fieldRevenue' | translate }}</ion-label>
+                <ion-checkbox [(ngModel)]="cost_center.revenue" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'cost_centers.fieldCost' | translate }}</ion-label>
+                <ion-checkbox [(ngModel)]="cost_center.cost" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+            </ion-item>
+
+        </ion-list>
+    </form>
+</ion-content>

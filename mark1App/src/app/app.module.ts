@@ -14,17 +14,21 @@ import { PersonsPage } from '../pages/persons/persons';
 import { PersonsDetailsPage } from '../pages/persons-details/persons-details';
 import { PersonsEditPage } from '../pages/persons-edit/persons-edit';
 
-import {BanksPage} from "../pages/banks/banks";
-import {BanksDetailsPage} from "../pages/banks-details/banks-details";
-import {BanksEditPage} from "../pages/banks-edit/banks-edit";
+import { BanksPage } from "../pages/banks/banks";
+import { BanksDetailsPage } from "../pages/banks-details/banks-details";
+import { BanksEditPage } from "../pages/banks-edit/banks-edit";
 
-import {CategoriesPage} from "../pages/categories/categories";
-import {CategoriesDetailsPage} from "../pages/categories-details/categories-details";
-import {CategoriesEditPage} from "../pages/categories-edit/categories-edit";
+import { CategoriesPage } from "../pages/categories/categories";
+import { CategoriesDetailsPage } from "../pages/categories-details/categories-details";
+import { CategoriesEditPage } from "../pages/categories-edit/categories-edit";
 
-import {AccountsPage} from "../pages/accounts/accounts";
-import {AccountsDetailsPage} from "../pages/accounts-details/accounts-details";
-import {AccountsEditPage} from "../pages/accounts-edit/accounts-edit";
+import { AccountsPage } from "../pages/accounts/accounts";
+import { AccountsDetailsPage } from "../pages/accounts-details/accounts-details";
+import { AccountsEditPage } from "../pages/accounts-edit/accounts-edit";
+
+import { CostCentersPage } from "../pages/cost-centers/cost-centers";
+import { CostCentersDetailsPage } from "../pages/cost-centers-details/cost-centers-details";
+import { CostCentersEditPage } from "../pages/cost-centers-edit/cost-centers-edit";
 
 
 @NgModule({
@@ -43,7 +47,10 @@ import {AccountsEditPage} from "../pages/accounts-edit/accounts-edit";
     CategoriesEditPage,
     AccountsPage,
     AccountsDetailsPage,
-    AccountsEditPage
+    AccountsEditPage,
+    CostCentersPage,
+    CostCentersDetailsPage,
+    CostCentersEditPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -69,7 +76,10 @@ import {AccountsEditPage} from "../pages/accounts-edit/accounts-edit";
     CategoriesEditPage,
     AccountsPage,
     AccountsDetailsPage,
-    AccountsEditPage
+    AccountsEditPage,
+    CostCentersPage,
+    CostCentersDetailsPage,
+    CostCentersEditPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

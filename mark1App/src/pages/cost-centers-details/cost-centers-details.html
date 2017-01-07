@@ -1,0 +1,39 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ cost_center?.description }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <h2>{{ cost_center?.description }}</h2>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{ 'cost_centers.fieldRevenue' | translate }}</ion-label>
+        <ion-note item-right="">
+            {{ cost_center?.revenue }}
+        </ion-note>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{ 'cost_centers.fieldCost' | translate }}</ion-label>
+        <ion-note item-right="">
+            {{ cost_center?.cost }}
+        </ion-note>
+    </ion-item>
+  </ion-list>
+
+    <ion-fab right bottom>
+
+        <button ion-fab mini color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+
+        <ion-fab-list side="left">
+            <button ion-fab mini (click)="edit( cost_center?.id )"><ion-icon name="create"></ion-icon></button>
+            <button ion-fab mini color="danger" (click)="delete( cost_center?.id )"><ion-icon name="trash"></ion-icon></button>
+        </ion-fab-list>
+
+    </ion-fab>
+</ion-content>

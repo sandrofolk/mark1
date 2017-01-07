@@ -6,6 +6,7 @@
     "banks" : "Banks",
     "categories": "Categories",
     "accounts": "Accounts",
+    "cost_centers": "Cost centers",
     "logout" : "Logout"
   },
   "app" : {
@@ -52,5 +53,12 @@
     "fieldDigit" : "Digit",
     "fieldDescription" : "Description",
     "fieldBank": "Bank"
+  },
+  "cost_centers" : {
+    "titleList" : "Cost Centers",
+    "titleCad" : "Cost Center",
+    "fieldDescription" : "Description",
+    "fieldRevenue" : "Revenue?",
+    "fieldCost" : "Cost?"
   }
 }

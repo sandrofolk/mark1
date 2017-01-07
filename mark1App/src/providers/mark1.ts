@@ -7,6 +7,7 @@ import { Person } from '../models/person';
 import { Bank } from '../models/bank';
 import { Category } from '../models/category';
 import {Account} from "../models/account";
+import {CostCenter} from "../models/cost_center";
 
 
 export class User {
@@ -208,6 +209,40 @@ export class Mark1 {
     )
   }
 
+  public postCostCenter(cost_center) {
+    return Observable.create(observer => {
+        if (cost_center.id)
+        {
+          this.http.put(`${this.mark1ApiUrl}/cost_center/${cost_center.id}/`, JSON.stringify(cost_center), {headers: this.contentHeader})
+            .map(res => res.json())
+            .subscribe(
+              data => {
+                observer.next(true);
+                observer.complete();
+              },
+              err => {
+                observer.error(err._body);
+                observer.complete();
+              }
+            );
+        } else {
+          this.http.post(`${this.mark1ApiUrl}/cost_center/`, JSON.stringify(cost_center), {headers: this.contentHeader})
+            .map(res => res.json())
+            .subscribe(
+              data => {
+                observer.next(true);
+                observer.complete();
+              },
+              err => {
+                observer.error(err._body);
+                observer.complete();
+              }
+            );
+        }
+      }
+    )
+  }
+
   public deletePerson(person) {
     return Observable.create(observer => {
 
@@ -284,6 +319,25 @@ export class Mark1 {
     )
   }
 
+  public deleteCostCenter(cost_center) {
+    return Observable.create(observer => {
+
+        this.http.delete(`${this.mark1ApiUrl}/cost_center/${cost_center.id}/`, {headers: this.contentHeader})
+          .map(res => res.json())
+          .subscribe(
+            data => {
+              observer.next(true);
+              observer.complete();
+            },
+            err => {
+              observer.next(false);
+              observer.complete();
+            }
+          );
+      }
+    )
+  }
+
   // Load all mark1 persons
   load(): Observable<Person[]> {
     return this.http.get(`${this.mark1ApiUrl}/person/`, { headers: this.contentHeader })
@@ -332,6 +386,20 @@ export class Mark1 {
   loadDetailsAccount(id: number): Observable<Account> {
     return this.http.get(`${this.mark1ApiUrl}/account/${id}/`, { headers: this.contentHeader })
       .map(res => <Account>(res.json()))
+  }
+
+
+
+  // Load all mark1 cost centers
+  loadCostCenters(): Observable<CostCenter[]> {
+    return this.http.get(`${this.mark1ApiUrl}/cost_center/`, { headers: this.contentHeader })
+      .map(res => <CostCenter[]>res.json());
+  }
+
+  // Get mark1 account by providing id
+  loadDetailsCostCenter(id: number): Observable<CostCenter> {
+    return this.http.get(`${this.mark1ApiUrl}/cost_center/${id}/`, { headers: this.contentHeader })
+      .map(res => <CostCenter>(res.json()))
   }
 
 }
