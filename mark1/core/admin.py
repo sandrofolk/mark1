@@ -18,7 +18,7 @@ class CategoryModelAdmin(MPTTModelAdmin):
     list_display = ['description', ]
 
 
-class AccountModelAdmin(admin.ModelAdmin):
+class BankAccountModelAdmin(admin.ModelAdmin):
     list_display = ['description', 'bank', 'agency', 'account_digit',]
 
     def account_digit(self, obj):
@@ -35,7 +35,7 @@ class CostCenterModelAdmin(admin.ModelAdmin):
 
 admin.site.register(Person, PersonModelAdmin)
 admin.site.register(Bank, BankModelAdmin)
-admin.site.register(Account, AccountModelAdmin)
+admin.site.register(BankAccount, BankAccountModelAdmin)
 admin.site.register(Category, CategoryModelAdmin)
 admin.site.register(CostCenter, CostCenterModelAdmin)
 

@@ -5,7 +5,7 @@
     "persons" : "Pessoas",
     "banks" : "Bancos",
     "categories": "Categorias",
-    "accounts": "Contas",
+    "bank_accounts": "Contas Bancárias",
     "cost_centers": "Centros de custo",
     "logout" : "Sair"
   },
@@ -45,9 +45,9 @@
     "fieldDescription" : "Descrição",
     "fieldParent": "Pai"
   },
-  "accounts" : {
-    "titleList" : "Contas",
-    "titleCad" : "Conta",
+  "bank_accounts" : {
+    "titleList" : "Contas Bancárias",
+    "titleCad" : "Conta Bancária",
     "fieldAgency" : "Agência",
     "fieldAccount" : "Conta",
     "fieldDigit" : "Digito",

@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import {NavController, NavParams, Loading, AlertController, LoadingController} from 'ionic-angular';
 
-import { Account } from '../../models/account';
+import { BankAccount } from '../../models/bank_account';
 import { Mark1 } from '../../providers/mark1';
-import {TranslateService} from "ng2-translate";
-import {AccountsEditPage} from "../accounts-edit/accounts-edit";
+import { TranslateService } from "ng2-translate";
+import { BankAccountsEditPage } from "../bank-accounts-edit/bank-accounts-edit";
 
 
 @Component({
-  selector: 'page-accounts-details',
-  templateUrl: 'accounts-details.html'
+  selector: 'page-bank-accounts-details',
+  templateUrl: 'bank-accounts-details.html'
 })
-export class AccountsDetailsPage {
+export class BankAccountsDetailsPage {
 
-  account: Account;
+  bank_account: BankAccount;
   id: number;
   loading: Loading;
   str = {};
@@ -44,12 +44,12 @@ export class AccountsDetailsPage {
   }
 
   edit(id: number) {
-    this.navCtrl.push(AccountsEditPage, {"parentPage": this, id});
+    this.navCtrl.push(BankAccountsEditPage, {"parentPage": this, id});
   }
 
   delete() {
     this.showLoading();
-    this.mark1.deleteAccount(this.account).subscribe(allowed => {
+    this.mark1.deleteBankAccount(this.bank_account).subscribe(allowed => {
       if (allowed) {
         setTimeout(() => {
           this.navCtrl.pop();
@@ -83,12 +83,12 @@ export class AccountsDetailsPage {
   }
 
   ionViewWillEnter() {
-    this.carregaAccount();
+    this.carregaBankAccount();
   }
 
-  carregaAccount() {
-    this.mark1.loadDetailsAccount(this.id).subscribe(account => {
-      this.account = account;
+  carregaBankAccount() {
+    this.mark1.loadDetailsBankAccount(this.id).subscribe(bank_account => {
+      this.bank_account = bank_account;
     })
   }
 

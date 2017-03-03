@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { PersonsPage } from '../pages/persons/persons';
 import { BanksPage } from '../pages/banks/banks';
 import { CategoriesPage } from '../pages/categories/categories';
-import { AccountsPage } from '../pages/accounts/accounts';
+import { BankAccountsPage } from '../pages/bank-accounts/bank-accounts';
 import { CostCentersPage } from '../pages/cost-centers/cost-centers'
 
 import { Mark1 } from '../providers/mark1';
@@ -32,14 +32,14 @@ export class MyApp {
     this.translateConfig();
 
     this.translate.get([
-      'menu.home', 'menu.persons', 'menu.banks', 'menu.categories', 'menu.accounts', 'menu.cost_centers'
+      'menu.home', 'menu.persons', 'menu.banks', 'menu.categories', 'menu.bank_accounts', 'menu.cost_centers'
     ]).subscribe((res: string[]) => {
       this.pages = [
         { title: res['menu.home'], component: HomePage },
         { title: res['menu.persons'], component: PersonsPage },
         { title: res['menu.banks'], component: BanksPage },
         { title: res['menu.categories'], component: CategoriesPage },
-        { title: res['menu.accounts'], component: AccountsPage },
+        { title: res['menu.bank_accounts'], component: BankAccountsPage },
         { title: res['menu.cost_centers'], component: CostCentersPage }
       ];
     });

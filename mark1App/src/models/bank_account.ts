@@ -1,8 +1,8 @@
-// Account model based on the structure of mark1 api at
-// http://127.0.0.1:8000/api/account/{id}
+// BankAccount model based on the structure of mark1 api at
+// http://127.0.0.1:8000/api/bank_account/{id}
 
 import {Bank} from "./bank";
-export interface Account {
+export interface BankAccount {
   id: number;
   agency: string;
   account: string;

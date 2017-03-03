@@ -33,7 +33,7 @@ class Bank(models.Model):
         return self.code + '.' + self.description
 
 
-class Account(models.Model):
+class BankAccount(models.Model):
     bank = models.ForeignKey('Bank', verbose_name='banco', null=True, blank=True)
     agency = models.CharField('agência', max_length=20, null=True, blank=True)
     account = models.CharField('conta', max_length=20, null=True, blank=True)

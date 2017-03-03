@@ -15,9 +15,11 @@ class BankSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AccountSerializer(serializers.ModelSerializer):
+class BankAccountSerializer(serializers.ModelSerializer):
+    bank_description = serializers.ReadOnlyField()
+
     class Meta:
-        model = Account
+        model = BankAccount
         fields = ['id', 'bank', 'agency', 'account', 'digit', 'description', 'bank_description']
 
 

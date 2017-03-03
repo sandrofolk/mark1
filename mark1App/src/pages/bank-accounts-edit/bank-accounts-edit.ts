@@ -3,17 +3,17 @@ import {NavController, NavParams, Loading, AlertController, LoadingController} f
 
 import {Mark1} from "../../providers/mark1";
 import {TranslateService} from "ng2-translate";
-import {Account} from "../../models/account";
+import {BankAccount} from "../../models/bank_account";
 import {Bank} from "../../models/bank";
 
 
 @Component({
-  selector: 'page-accounts-edit',
-  templateUrl: 'accounts-edit.html'
+  selector: 'page-bank-accounts-edit',
+  templateUrl: 'bank-accounts-edit.html'
 })
-export class AccountsEditPage {
+export class BankAccountsEditPage {
 
-  account: Account = <Account>({});
+  bank_account: BankAccount = <BankAccount>({});
   banks: Bank[];
   id: number;
   loading: Loading;
@@ -29,8 +29,8 @@ export class AccountsEditPage {
   ) {
     this.id = navParams.get('id');
     if (this.id) {
-      mark1.loadDetailsAccount(this.id).subscribe(account => {
-        this.account = account;
+      mark1.loadDetailsBankAccount(this.id).subscribe(bank_account => {
+        this.bank_account = bank_account;
       });
     }
     this.mark1.loadBanks().subscribe(banks => {
@@ -74,7 +74,7 @@ export class AccountsEditPage {
 
   post() {
     this.showLoading();
-    this.mark1.postAccount(this.account).subscribe(allowed => {
+    this.mark1.postBankAccount(this.bank_account).subscribe(allowed => {
       if (allowed) {
         setTimeout(() => {
           this.navCtrl.pop();

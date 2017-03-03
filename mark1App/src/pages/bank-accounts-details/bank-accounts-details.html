@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ bank_account?.description }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+          <h2>{{ bank_account?.description }}</h2>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'bank_accounts.fieldAgency' | translate }}</ion-label>
+            <ion-note item-right="">
+                {{ bank_account?.agency }}
+            </ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'bank_accounts.fieldAccount' | translate }}</ion-label>
+            <ion-note item-right="">
+                {{ bank_account?.account }}
+            </ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'bank_accounts.fieldDigit' | translate }}</ion-label>
+            <ion-note item-right="">
+                {{ bank_account?.digit }}
+            </ion-note>
+        </ion-item>
+        <ion-item>
+            <ion-label>{{ 'bank_accounts.fieldBank' | translate }}</ion-label>
+            <ion-note item-right="">
+                {{ bank_account?.bank_description }}
+            </ion-note>
+        </ion-item>
+    </ion-list>
+
+    <ion-fab right bottom>
+
+        <button ion-fab mini color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+
+        <ion-fab-list side="left">
+            <button ion-fab mini (click)="edit( bank_account?.id )"><ion-icon name="create"></ion-icon></button>
+            <button ion-fab mini color="danger" (click)="delete( bank_account?.id )"><ion-icon name="trash"></ion-icon></button>
+        </ion-fab-list>
+
+    </ion-fab>
+</ion-content>

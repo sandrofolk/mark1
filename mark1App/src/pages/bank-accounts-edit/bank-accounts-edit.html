@@ -1,0 +1,48 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{ 'bank_accounts.titleCad' | translate }}</ion-title>
+        <ion-buttons end>
+            <button ion-button color="secondary" (click)="post()" [disabled]="!bankAccountForm.form.valid">
+                <ion-icon name="done-all"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form (ngSubmit)="post()" #bankAccountForm="ngForm">
+        <ion-list>
+
+            <ion-item>
+                <ion-label stacked>{{ 'bank_accounts.fieldAgency' | translate }}</ion-label>
+                <ion-input type="text" name="agency" [(ngModel)]="bank_account.agency"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'bank_accounts.fieldAccount' | translate }}</ion-label>
+                <ion-input type="text" name="account" [(ngModel)]="bank_account.account"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'bank_accounts.fieldDigit' | translate }}</ion-label>
+                <ion-input type="text" name="digit" [(ngModel)]="bank_account.digit"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'bank_accounts.fieldDescription' | translate }}</ion-label>
+                <ion-input type="text" name="description" [(ngModel)]="bank_account.description" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label stacked>{{ 'bank_accounts.fieldBank' | translate }}</ion-label>
+                <ion-select name="parent" [(ngModel)]="bank_account.bank" >
+                    <ion-option *ngFor="let bank of banks" value="{{ bank.id }}">{{ bank.description }}</ion-option>
+                </ion-select>
+            </ion-item>
+
+        </ion-list>
+    </form>
+</ion-content>

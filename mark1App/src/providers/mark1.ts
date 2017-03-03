@@ -6,8 +6,8 @@ import 'rxjs/add/operator/map';
 import { Person } from '../models/person';
 import { Bank } from '../models/bank';
 import { Category } from '../models/category';
-import {Account} from "../models/account";
-import {CostCenter} from "../models/cost_center";
+import { BankAccount } from "../models/bank_account";
+import { CostCenter } from "../models/cost_center";
 
 
 export class User {
@@ -22,11 +22,17 @@ export class User {
 
 @Injectable()
 export class Mark1 {
-  serverUrl = 'https://sandrofolk-mark1.herokuapp.com';
-  // serverUrl = 'http://127.0.0.1:8000';
+  // serverUrl = 'https://sandrofolk-mark1.herokuapp.com';
+  serverUrl = 'http://127.0.0.1:8000';
 
   mark1ApiUrl = this.serverUrl + '/api';
   mark1ApiAuthUrl = this.serverUrl + '/rest-auth';
+
+  mark1ApiPerson = 'person';
+  mark1ApiBank = 'bank';
+  mark1ApiBankAccount = 'bank_account';
+  mark1ApiCategory = 'category';
+  mark1ApiCostCenter = 'cost_center';
 
   currentUser: User;
   contentHeader: Headers = new Headers({"Content-Type": "application/json"});
@@ -77,7 +83,7 @@ export class Mark1 {
     return Observable.create(observer => {
         if (person.id)
         {
-          this.http.put(`${this.mark1ApiUrl}/person/${person.id}/`, JSON.stringify(person), {headers: this.contentHeader})
+          this.http.put(`${this.mark1ApiUrl}/${this.mark1ApiPerson}/${person.id}/`, JSON.stringify(person), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -90,7 +96,7 @@ export class Mark1 {
               }
             );
         } else {
-          this.http.post(`${this.mark1ApiUrl}/person/`, JSON.stringify(person), {headers: this.contentHeader})
+          this.http.post(`${this.mark1ApiUrl}/${this.mark1ApiPerson}/`, JSON.stringify(person), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -111,7 +117,7 @@ export class Mark1 {
     return Observable.create(observer => {
         if (bank.id)
         {
-          this.http.put(`${this.mark1ApiUrl}/bank/${bank.id}/`, JSON.stringify(bank), {headers: this.contentHeader})
+          this.http.put(`${this.mark1ApiUrl}/${this.mark1ApiBank}/${bank.id}/`, JSON.stringify(bank), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -124,7 +130,7 @@ export class Mark1 {
               }
             );
         } else {
-          this.http.post(`${this.mark1ApiUrl}/bank/`, JSON.stringify(bank), {headers: this.contentHeader})
+          this.http.post(`${this.mark1ApiUrl}/${this.mark1ApiBank}/`, JSON.stringify(bank), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -145,7 +151,7 @@ export class Mark1 {
     return Observable.create(observer => {
         if (category.id)
         {
-          this.http.put(`${this.mark1ApiUrl}/category/${category.id}/`, JSON.stringify(category), {headers: this.contentHeader})
+          this.http.put(`${this.mark1ApiUrl}/${this.mark1ApiCategory}/${category.id}/`, JSON.stringify(category), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -158,7 +164,7 @@ export class Mark1 {
               }
             );
         } else {
-          this.http.post(`${this.mark1ApiUrl}/category/`, JSON.stringify(category), {headers: this.contentHeader})
+          this.http.post(`${this.mark1ApiUrl}/${this.mark1ApiCategory}/`, JSON.stringify(category), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -175,11 +181,11 @@ export class Mark1 {
     )
   }
 
-  public postAccount(account) {
+  public postBankAccount(bank_account) {
     return Observable.create(observer => {
-        if (account.id)
+        if (bank_account.id)
         {
-          this.http.put(`${this.mark1ApiUrl}/account/${account.id}/`, JSON.stringify(account), {headers: this.contentHeader})
+          this.http.put(`${this.mark1ApiUrl}/${this.mark1ApiBankAccount}/${bank_account.id}/`, JSON.stringify(bank_account), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -192,7 +198,7 @@ export class Mark1 {
               }
             );
         } else {
-          this.http.post(`${this.mark1ApiUrl}/account/`, JSON.stringify(account), {headers: this.contentHeader})
+          this.http.post(`${this.mark1ApiUrl}/${this.mark1ApiBankAccount}/`, JSON.stringify(bank_account), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -213,7 +219,7 @@ export class Mark1 {
     return Observable.create(observer => {
         if (cost_center.id)
         {
-          this.http.put(`${this.mark1ApiUrl}/cost_center/${cost_center.id}/`, JSON.stringify(cost_center), {headers: this.contentHeader})
+          this.http.put(`${this.mark1ApiUrl}/${this.mark1ApiCostCenter}/${cost_center.id}/`, JSON.stringify(cost_center), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -226,7 +232,7 @@ export class Mark1 {
               }
             );
         } else {
-          this.http.post(`${this.mark1ApiUrl}/cost_center/`, JSON.stringify(cost_center), {headers: this.contentHeader})
+          this.http.post(`${this.mark1ApiUrl}/${this.mark1ApiCostCenter}/`, JSON.stringify(cost_center), {headers: this.contentHeader})
             .map(res => res.json())
             .subscribe(
               data => {
@@ -246,7 +252,7 @@ export class Mark1 {
   public deletePerson(person) {
     return Observable.create(observer => {
 
-        this.http.delete(`${this.mark1ApiUrl}/person/${person.id}/`, {headers: this.contentHeader})
+        this.http.delete(`${this.mark1ApiUrl}/${this.mark1ApiPerson}/${person.id}/`, {headers: this.contentHeader})
           .map(res => res.json())
           .subscribe(
             data => {
@@ -265,7 +271,7 @@ export class Mark1 {
   public deleteBank(bank) {
     return Observable.create(observer => {
 
-        this.http.delete(`${this.mark1ApiUrl}/bank/${bank.id}/`, {headers: this.contentHeader})
+        this.http.delete(`${this.mark1ApiUrl}/${this.mark1ApiBank}/${bank.id}/`, {headers: this.contentHeader})
           .map(res => res.json())
           .subscribe(
             data => {
@@ -284,7 +290,7 @@ export class Mark1 {
   public deleteCategory(category) {
     return Observable.create(observer => {
 
-        this.http.delete(`${this.mark1ApiUrl}/category/${category.id}/`, {headers: this.contentHeader})
+        this.http.delete(`${this.mark1ApiUrl}/${this.mark1ApiCategory}/${category.id}/`, {headers: this.contentHeader})
           .map(res => res.json())
           .subscribe(
             data => {
@@ -300,10 +306,10 @@ export class Mark1 {
     )
   }
 
-  public deleteAccount(account) {
+  public deleteBankAccount(bank_account) {
     return Observable.create(observer => {
 
-        this.http.delete(`${this.mark1ApiUrl}/account/${account.id}/`, {headers: this.contentHeader})
+        this.http.delete(`${this.mark1ApiUrl}/${this.mark1ApiBankAccount}/${bank_account.id}/`, {headers: this.contentHeader})
           .map(res => res.json())
           .subscribe(
             data => {
@@ -322,7 +328,7 @@ export class Mark1 {
   public deleteCostCenter(cost_center) {
     return Observable.create(observer => {
 
-        this.http.delete(`${this.mark1ApiUrl}/cost_center/${cost_center.id}/`, {headers: this.contentHeader})
+        this.http.delete(`${this.mark1ApiUrl}/${this.mark1ApiCostCenter}/${cost_center.id}/`, {headers: this.contentHeader})
           .map(res => res.json())
           .subscribe(
             data => {
@@ -340,65 +346,65 @@ export class Mark1 {
 
   // Load all mark1 persons
   load(): Observable<Person[]> {
-    return this.http.get(`${this.mark1ApiUrl}/person/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiPerson}/`, { headers: this.contentHeader })
       .map(res => <Person[]>res.json());
   }
 
   // Get mark1 person by providing id
   loadDetails(id: number): Observable<Person> {
-    return this.http.get(`${this.mark1ApiUrl}/person/${id}/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiPerson}/${id}/`, { headers: this.contentHeader })
       .map(res => <Person>(res.json()))
   }
 
   // Load all mark1 banks
   loadBanks(): Observable<Bank[]> {
-    return this.http.get(`${this.mark1ApiUrl}/bank/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiBank}/`, { headers: this.contentHeader })
       .map(res => <Bank[]>res.json());
   }
 
   // Get mark1 bank by providing id
   loadDetailsBank(id: number): Observable<Bank> {
-    return this.http.get(`${this.mark1ApiUrl}/bank/${id}/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiBank}/${id}/`, { headers: this.contentHeader })
       .map(res => <Bank>(res.json()))
   }
 
   // Load all mark1 categories
   loadCategories(): Observable<Category[]> {
-    return this.http.get(`${this.mark1ApiUrl}/category/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiCategory}/`, { headers: this.contentHeader })
       .map(res => <Category[]>res.json());
   }
 
   // Get mark1 category by providing id
   loadDetailsCategory(id: number): Observable<Category> {
-    return this.http.get(`${this.mark1ApiUrl}/category/${id}/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiCategory}/${id}/`, { headers: this.contentHeader })
       .map(res => <Category>(res.json()))
   }
 
 
 
   // Load all mark1 accounts
-  loadAccounts(): Observable<Account[]> {
-    return this.http.get(`${this.mark1ApiUrl}/account/`, { headers: this.contentHeader })
-      .map(res => <Account[]>res.json());
+  loadBankAccounts(): Observable<BankAccount[]> {
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiBankAccount}/`, { headers: this.contentHeader })
+      .map(res => <BankAccount[]>res.json());
   }
 
   // Get mark1 account by providing id
-  loadDetailsAccount(id: number): Observable<Account> {
-    return this.http.get(`${this.mark1ApiUrl}/account/${id}/`, { headers: this.contentHeader })
-      .map(res => <Account>(res.json()))
+  loadDetailsBankAccount(id: number): Observable<BankAccount> {
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiBankAccount}/${id}/`, { headers: this.contentHeader })
+      .map(res => <BankAccount>(res.json()))
   }
 
 
 
   // Load all mark1 cost centers
   loadCostCenters(): Observable<CostCenter[]> {
-    return this.http.get(`${this.mark1ApiUrl}/cost_center/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiCostCenter}/`, { headers: this.contentHeader })
       .map(res => <CostCenter[]>res.json());
   }
 
   // Get mark1 account by providing id
   loadDetailsCostCenter(id: number): Observable<CostCenter> {
-    return this.http.get(`${this.mark1ApiUrl}/cost_center/${id}/`, { headers: this.contentHeader })
+    return this.http.get(`${this.mark1ApiUrl}/${this.mark1ApiCostCenter}/${id}/`, { headers: this.contentHeader })
       .map(res => <CostCenter>(res.json()))
   }
 

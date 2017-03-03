@@ -5,7 +5,7 @@
     "persons" : "Persons",
     "banks" : "Banks",
     "categories": "Categories",
-    "accounts": "Accounts",
+    "bank_accounts": "Bank Accounts",
     "cost_centers": "Cost centers",
     "logout" : "Logout"
   },
@@ -45,9 +45,9 @@
     "fieldDescription" : "Description",
     "fieldParent": "Parent"
   },
-  "accounts" : {
-    "titleList" : "Accounts",
-    "titleCad" : "Account",
+  "bank_accounts" : {
+    "titleList" : "Bank Accounts",
+    "titleCad" : "Bank Account",
     "fieldAgency" : "Agency",
     "fieldAccount" : "Account",
     "fieldDigit" : "Digit",

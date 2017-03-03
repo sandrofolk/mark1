@@ -3,15 +3,15 @@
         <button ion-button icon-only menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>{{ 'accounts.titleList' | translate }}</ion-title>
+        <ion-title>{{ 'bank_accounts.titleList' | translate }}</ion-title>
 
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let account of accounts" (click)="goToDetails(account.id)">
-      <h2>{{ account.description }}</h2>
+    <button ion-item *ngFor="let bank_account of bank_accounts" (click)="goToDetails(bank_account.id)">
+      <h2>{{ bank_account.description }}</h2>
       <ion-icon name="arrow-forward" item-right></ion-icon>
     </button>
   </ion-list>

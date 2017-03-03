@@ -22,9 +22,9 @@ import { CategoriesPage } from "../pages/categories/categories";
 import { CategoriesDetailsPage } from "../pages/categories-details/categories-details";
 import { CategoriesEditPage } from "../pages/categories-edit/categories-edit";
 
-import { AccountsPage } from "../pages/accounts/accounts";
-import { AccountsDetailsPage } from "../pages/accounts-details/accounts-details";
-import { AccountsEditPage } from "../pages/accounts-edit/accounts-edit";
+import { BankAccountsPage } from "../pages/bank-accounts/bank-accounts";
+import { BankAccountsDetailsPage } from "../pages/bank-accounts-details/bank-accounts-details";
+import { BankAccountsEditPage } from "../pages/bank-accounts-edit/bank-accounts-edit";
 
 import { CostCentersPage } from "../pages/cost-centers/cost-centers";
 import { CostCentersDetailsPage } from "../pages/cost-centers-details/cost-centers-details";
@@ -45,9 +45,9 @@ import { CostCentersEditPage } from "../pages/cost-centers-edit/cost-centers-edi
     CategoriesPage,
     CategoriesDetailsPage,
     CategoriesEditPage,
-    AccountsPage,
-    AccountsDetailsPage,
-    AccountsEditPage,
+    BankAccountsPage,
+    BankAccountsDetailsPage,
+    BankAccountsEditPage,
     CostCentersPage,
     CostCentersDetailsPage,
     CostCentersEditPage
@@ -74,9 +74,9 @@ import { CostCentersEditPage } from "../pages/cost-centers-edit/cost-centers-edi
     CategoriesPage,
     CategoriesDetailsPage,
     CategoriesEditPage,
-    AccountsPage,
-    AccountsDetailsPage,
-    AccountsEditPage,
+    BankAccountsPage,
+    BankAccountsDetailsPage,
+    BankAccountsEditPage,
     CostCentersPage,
     CostCentersDetailsPage,
     CostCentersEditPage
